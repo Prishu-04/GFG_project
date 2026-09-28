@@ -1,0 +1,6 @@
+[ 2026-09-28 00:32:11,407 ] 32 root - INFO - Loading raw dataset from c:\Users\KIIT\GFG_project\data\traffic_dataset.csv
+[ 2026-09-28 00:32:11,437 ] 34 root - INFO - Loaded raw dataset with shape (4354, 14)
+[ 2026-09-28 00:32:11,450 ] 54 root - INFO - Dropping 0 duplicate rows
+[ 2026-09-28 00:32:11,464 ] 86 root - INFO - Dropping unusable columns: ['IR Presence (Lane 1-4)', 'Vehicle Types Detected']
+[ 2026-09-28 00:32:11,466 ] 100 root - INFO - Cleaning complete. Final shape (4354, 14), remaining nulls: 0
+[ 2026-09-28 00:32:11,489 ] 110 root - INFO - Saved cleaned dataset to c:\Users\KIIT\GFG_project\data\traffic_dataset_clean.csv
