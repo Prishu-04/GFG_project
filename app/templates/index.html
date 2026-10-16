@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Urban Traffic Congestion Predictor</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff; padding: 24px;
+    }
+    .card {
+      max-width: 640px; text-align: center;
+      background: rgba(255,255,255,.08); backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,.15); border-radius: 18px;
+      padding: 48px 40px;
+    }
+    .icon { font-size: 56px; margin-bottom: 12px; }
+    h1 { font-size: 2rem; margin-bottom: 14px; }
+    p { line-height: 1.6; color: #d6e4ea; margin-bottom: 28px; }
+    .levels { display: flex; gap: 8px; justify-content: center; margin-bottom: 30px; flex-wrap: wrap; }
+    .levels span { padding: 6px 14px; border-radius: 20px; font-size: .85rem; font-weight: 600; color: #111; }
+    .low { background: #4caf50; }
+    .mod { background: #ffd54f; }
+    .high { background: #ff9800; }
+    .sev { background: #f44336; color: #fff !important; }
+    a.btn {
+      display: inline-block; padding: 14px 34px; border-radius: 30px;
+      background: #29b6f6; color: #04202c; font-weight: 700; text-decoration: none;
+    }
+    a.btn:hover { background: #4fc3f7; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">🚦</div>
+    <h1>Urban Traffic Congestion Predictor</h1>
+    <p>
+      Enter the current conditions at an intersection - time, weather, vehicle counts and
+      speed - and the machine learning model predicts how congested the next
+      15 minutes will be.
+    </p>
+    <div class="levels">
+      <span class="low">Low</span>
+      <span class="mod">Moderate</span>
+      <span class="high">High</span>
+      <span class="sev">Severe</span>
+    </div>
+    <a class="btn" href="/predictdata">Start Prediction →</a>
+  </div>
+</body>
+</html>
