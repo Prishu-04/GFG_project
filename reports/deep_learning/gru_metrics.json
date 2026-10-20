@@ -1,0 +1,54 @@
+{
+  "model": "gru",
+  "metrics": {
+    "MAE_vehicles": 10.897553581248125,
+    "RMSE_vehicles": 16.34838250779377,
+    "R2": 0.9856794183369336,
+    "MAE_utilisation": 0.027557553901417627,
+    "class_accuracy": 0.9207463884430177,
+    "class_macro_F1": 0.8718122351919686,
+    "class_within_one_level": 0.9998996789727127,
+    "confusion_matrix": [
+      [
+        5833,
+        270,
+        0,
+        0
+      ],
+      [
+        128,
+        1965,
+        129,
+        1
+      ],
+      [
+        0,
+        127,
+        554,
+        94
+      ],
+      [
+        0,
+        0,
+        41,
+        826
+      ]
+    ],
+    "n_test_windows": 9968
+  },
+  "n_parameters": 46273,
+  "best_epoch": 25,
+  "epochs_run": 33,
+  "train_seconds": 243.0,
+  "device": "cpu",
+  "seq_len": 16,
+  "hyperparameters": {
+    "hidden": 64,
+    "d_model": 64,
+    "layers": 2,
+    "heads": 4,
+    "dropout": 0.1,
+    "lr": 0.001,
+    "batch_size": 256
+  }
+}

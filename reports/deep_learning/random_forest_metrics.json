@@ -1,0 +1,40 @@
+{
+  "model": "random_forest",
+  "metrics": {
+    "MAE_vehicles": 11.02132648942038,
+    "RMSE_vehicles": 16.568047497158922,
+    "R2": 0.9852919960074679,
+    "MAE_utilisation": 0.02793306350760768,
+    "class_accuracy": 0.9199438202247191,
+    "class_macro_F1": 0.8719466346520004,
+    "class_within_one_level": 0.9998996789727127,
+    "confusion_matrix": [
+      [
+        5837,
+        266,
+        0,
+        0
+      ],
+      [
+        145,
+        1958,
+        119,
+        1
+      ],
+      [
+        0,
+        134,
+        557,
+        84
+      ],
+      [
+        0,
+        0,
+        49,
+        818
+      ]
+    ],
+    "n_test_windows": 9968
+  },
+  "train_seconds": 27.3
+}

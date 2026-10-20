@@ -1,0 +1,54 @@
+{
+  "model": "transformer",
+  "metrics": {
+    "MAE_vehicles": 10.943913061573898,
+    "RMSE_vehicles": 16.47307472591317,
+    "R2": 0.9854601336590934,
+    "MAE_utilisation": 0.02766844827986272,
+    "class_accuracy": 0.9190409309791332,
+    "class_macro_F1": 0.8695609860557068,
+    "class_within_one_level": 0.9998996789727127,
+    "confusion_matrix": [
+      [
+        5837,
+        266,
+        0,
+        0
+      ],
+      [
+        144,
+        1946,
+        132,
+        1
+      ],
+      [
+        0,
+        125,
+        555,
+        95
+      ],
+      [
+        0,
+        0,
+        44,
+        823
+      ]
+    ],
+    "n_test_windows": 9968
+  },
+  "n_parameters": 77953,
+  "best_epoch": 29,
+  "epochs_run": 37,
+  "train_seconds": 572.5,
+  "device": "cpu",
+  "seq_len": 16,
+  "hyperparameters": {
+    "hidden": 64,
+    "d_model": 64,
+    "layers": 2,
+    "heads": 4,
+    "dropout": 0.1,
+    "lr": 0.001,
+    "batch_size": 256
+  }
+}

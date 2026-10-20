@@ -1,0 +1,40 @@
+{
+  "model": "linear_ridge",
+  "metrics": {
+    "MAE_vehicles": 13.485138810634385,
+    "RMSE_vehicles": 19.282977822473423,
+    "R2": 0.9800767914620128,
+    "MAE_utilisation": 0.033745067109151844,
+    "class_accuracy": 0.9097110754414125,
+    "class_macro_F1": 0.8581486977583874,
+    "class_within_one_level": 1.0,
+    "confusion_matrix": [
+      [
+        5850,
+        253,
+        0,
+        0
+      ],
+      [
+        222,
+        1863,
+        138,
+        0
+      ],
+      [
+        0,
+        131,
+        570,
+        74
+      ],
+      [
+        0,
+        0,
+        82,
+        785
+      ]
+    ],
+    "n_test_windows": 9968
+  },
+  "train_seconds": 0.1
+}
