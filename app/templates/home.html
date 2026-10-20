@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% set active = 'predict' %}
+{% block title %}Predict congestion{% endblock %}
+{% block content %}
+<div class="hero" style="padding-bottom:18px">
+  <div class="eyebrow">Prediction</div>
+  <h1>Predict next-15-minute congestion</h1>
+  <p class="lead">The defaults describe a Tuesday morning at the CBD. Change any value and press Predict. Your next prediction is compared with this one, side by side.</p>
+</div>
+
+  <form id="predict-form" class="formcard" action="/predictdata" method="post" data-saved='{{ form|tojson }}'>
+
+    <fieldset>
+      <legend>Location &amp; time</legend>
+      <div class="grid">
+        <div>
+          <label>Intersection</label>
+          <select name="intersection_id" required>
+            <option value="INT_01_CBD" selected>CBD</option>
+            <option value="INT_02_Arterial">Arterial</option>
+            <option value="INT_03_Residential">Residential</option>
+            <option value="INT_04_Stadium">Stadium</option>
+          </select>
+        </div>
+        <div>
+          <label>Hour (0-23)</label>
+          <input type="number" name="hour" min="0" max="23" value="8" required>
+        </div>
+        <div>
+          <label>Minute</label>
+          <select name="minute">
+            <option value="0">0</option>
+            <option value="15" selected>15</option>
+            <option value="30">30</option>
+            <option value="45">45</option>
+          </select>
+        </div>
+        <div>
+          <label>Day of week</label>
+          <select name="day_of_week">
+            <option value="0">Monday</option>
+            <option value="1" selected>Tuesday</option>
+            <option value="2">Wednesday</option>
+            <option value="3">Thursday</option>
+            <option value="4">Friday</option>
+            <option value="5">Saturday</option>
+            <option value="6">Sunday</option>
+          </select>
+        </div>
+        <div>
+          <label>Holiday?</label>
+          <select name="is_holiday">
+            <option value="0" selected>No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+        <div>
+          <label>Event nearby?</label>
+          <select name="event_nearby">
+            <option value="0" selected>No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+        <div>
+          <label>Incident?</label>
+          <select name="incident_flag">
+            <option value="0" selected>No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Weather</legend>
+      <div class="grid">
+        <div>
+          <label>Temperature (°C)</label>
+          <input type="number" step="any" name="temperature_c" value="24" required>
+        </div>
+        <div>
+          <label>Rain (mm / 15 min)</label>
+          <input type="number" step="any" min="0" name="rain_mm_15min" value="0" required>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Current traffic</legend>
+      <div class="grid">
+        <div>
+          <label>Vehicle count (15 min)</label>
+          <input type="number" step="any" min="0" name="vehicle_count" value="210" required>
+        </div>
+        <div>
+          <label>Avg speed (km/h)</label>
+          <input type="number" step="any" min="0" name="avg_speed_kmh" value="32" required>
+        </div>
+        <div>
+          <label>Density (veh / km)</label>
+          <input type="number" step="any" min="0" name="vehicle_density_per_km" value="60" required>
+        </div>
+        <div>
+          <label>Avg waiting time (sec)</label>
+          <input type="number" step="any" min="0" name="avg_waiting_time_sec" value="40" required>
+        </div>
+        <div>
+          <label>Queue length (veh)</label>
+          <input type="number" step="any" min="0" name="queue_length_veh" value="25" required>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Recent history (vehicle counts)</legend>
+      <div class="grid">
+        <div>
+          <label>Previous 15 min</label>
+          <input type="number" step="any" min="0" name="prev_count_15min" value="200" required>
+        </div>
+        <div>
+          <label>Previous 1 hour</label>
+          <input type="number" step="any" min="0" name="prev_count_1h" value="190" required>
+        </div>
+        <div>
+          <label>Same time yesterday</label>
+          <input type="number" step="any" min="0" name="count_same_time_yesterday" value="205" required>
+        </div>
+        <div>
+          <label>Same time last week</label>
+          <input type="number" step="any" min="0" name="count_same_time_last_week" value="198" required>
+        </div>
+        <div>
+          <label>Rolling mean (1 h)</label>
+          <input type="number" step="any" min="0" name="rolling_mean_1h" value="195" required>
+        </div>
+      </div>
+    </fieldset>
+
+    <button type="submit" class="btn submit">Predict congestion</button>
+  </form>
+
+  {% if result %}
+  <div class="result {{ result }}" id="result" data-label="{{ result }}" data-probs='{{ probs|tojson if probs else "{}" }}' role="status">
+    <h2>Predicted congestion level</h2>
+    <div class="label">{{ result }}</div>
+    {% if probs %}
+    <div class="bars">
+      {% for name in ["Low", "Moderate", "High", "Severe"] %}
+      <div class="bar-row">
+        <span class="name">{{ name }}</span>
+        <span class="track"><span class="fill" data-width="{{ (probs[name] * 100)|round(1) }}"></span></span>
+        <span class="pct">{{ (probs[name] * 100)|round(1) }}%</span>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  <div class="panel delta" id="delta" hidden></div>
+  {% endif %}
+
+  {% if error %}
+  <div class="error"><strong>Error:</strong> {{ error }}</div>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='predict.js') }}"></script>
+{% endblock %}

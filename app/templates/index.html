@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% set active = 'home' %}
+{% block content %}
+<div class="hero">
+  <div class="eyebrow">Traffic forecasting for four city intersections</div>
+  <h1>Urban Traffic Congestion Predictor</h1>
+  <p class="lead">Enter the current conditions at an intersection (time, weather, vehicle counts and speed) and the model predicts how congested the next 15 minutes will be.</p>
+  <div class="levels" aria-label="Congestion levels">
+    <span class="chip-level Low">Low</span><span class="chip-level Moderate">Moderate</span>
+    <span class="chip-level High">High</span><span class="chip-level Severe">Severe</span>
+  </div>
+  <div class="actions">
+    <a class="btn" href="{{ url_for('predict_datapoint') }}">Start prediction</a>
+    <a class="btn ghost" href="{{ url_for('results') }}">See charts and model comparison</a>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="k">Intersections</div><div class="v">4</div><div class="s">15-minute readings</div></div>
+    <div class="stat"><div class="k">Best model</div><div class="v">{{ summary.best_name }}</div><div class="s">lowest test error</div></div>
+    <div class="stat"><div class="k">Class accuracy</div><div class="v">{{ summary.best_acc }}</div><div class="s">on the test period</div></div>
+    <div class="stat"><div class="k">Charts</div><div class="v">{{ summary.n_figs }}</div><div class="s">generated from the data</div></div>
+  </div>
+</div>
+{% endblock %}

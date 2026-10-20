@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Urban Traffic Congestion Predictor{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="{{ url_for('index') }}"><span class="dot"></span>Traffic Predictor</a>
+    <nav aria-label="Main">
+      <a href="{{ url_for('index') }}" {% if active == 'home' %}class="active" aria-current="page"{% endif %}>Home</a>
+      <a href="{{ url_for('predict_datapoint') }}" {% if active == 'predict' %}class="active" aria-current="page"{% endif %}>Predict</a>
+      <a href="{{ url_for('results') }}" {% if active == 'results' %}class="active" aria-current="page"{% endif %}>Results</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+{% block content %}{% endblock %}
+</main>
+<footer>
+  <div class="wrap">Dynamic Urban Traffic Prediction. Charts and metrics on the Results page are read from the project's <code>reports/</code> folder.</div>
+</footer>
+{% block scripts %}{% endblock %}
+</body>
+</html>
