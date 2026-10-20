@@ -1,9 +1,0 @@
-venv/
-.venv/
-__pycache__/
-*.pyc
-.ipynb_checkpoints/
-.vscode/
-logs/runtime/
-models/deep_learning/*.pt
-*.egg-info/
